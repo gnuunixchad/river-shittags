@@ -164,7 +164,8 @@ snap_to_occupied(uint32_t new_tagmask,
 static void
 set_tagmask(struct zriver_control_v1* river_controller, uint32_t new_tagmask)
 {
-    size_t buf_size = (size_t)snprintf(NULL, 0, "%u", new_tagmask) + 1; // account for null byte
+    size_t buf_size =
+      (size_t)snprintf(NULL, 0, "%u", new_tagmask) + 1; // account for null byte
     char* tags_str = malloc(sizeof(char) * buf_size);
     sprintf(tags_str, "%u", new_tagmask);
 
@@ -197,7 +198,8 @@ set_init_tagmask(void* data,
 static const struct zriver_output_status_v1_listener output_status_listener = {
     .focused_tags = set_init_tagmask,
     .view_tags = set_occupied_tags,
-    .urgent_tags = noop,
+    .urgent_tags =
+      (void (*)(void*, struct zriver_output_status_v1*, uint32_t))noop,
 };
 
 static void
@@ -217,8 +219,10 @@ river_seat_status_handle_focused_output(
 static const struct zriver_seat_status_v1_listener
   river_seat_status_listener = {
       .focused_output = river_seat_status_handle_focused_output,
-      .unfocused_output = noop,
-      .focused_view = noop,
+      .unfocused_output =
+        (void (*)(void*, struct zriver_seat_status_v1*, struct wl_output*))noop,
+      .focused_view =
+        (void (*)(void*, struct zriver_seat_status_v1*, const char*))noop,
   };
 
 static void
