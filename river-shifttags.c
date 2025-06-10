@@ -31,6 +31,19 @@ bool occupied_only = false;
 uint32_t occupied_tags = 0;
 uint32_t init_tags;
 
+void
+print_tagmask(uint32_t m)
+{
+    for (int i = 0; i < (int)sizeof(uint32_t) * CHAR_BIT; i++) {
+        if (1U << i & m) {
+            printf("1");
+        } else {
+            printf("0");
+        }
+    }
+    printf("\n");
+}
+
 static void
 noop()
 {
