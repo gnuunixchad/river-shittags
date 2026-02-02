@@ -1,23 +1,14 @@
-# river-shifttags
+# fork of [river-shifttags](https://gitlab.com/akumar-xyz/river-shifttags)
 
-A small utility for the river Wayland compositor to rotate the focused tags.
-Useful for focusing next/prev tag, or rotating the whole tagmask if multiple
-tags are in focus.
+A small utility for the river-classic Wayland compositor to rotate the focused
+tags. Useful for focusing next/prev tag, or rotating the whole tagmask if
+multiple tags are in focus.
 
 # Installation
 
 ```sh
 $ make
 $ sudo make install
-```
-## AUR - Arch Linux
-
-Thanks to _ygabuev_, `river-shifttags-git` is packaged on the AUR. 
-
-```sh
-git clone https://aur.archlinux.org/river-shifttags-git.git
-cd river-shifttags-git
-makepkg -si
 ```
 
 # Usage
